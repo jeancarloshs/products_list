@@ -20,6 +20,7 @@ class ProductsRepositories implements IProductsRepositories {
     if (responseApi.statusCode == 200) {
       final List<ProductsModel> products = [];
       final body = jsonDecode(responseApi.body);
+
       body['products'].map((item) {
         final ProductsModel product = ProductsModel.fromMap(item);
         products.add(product);

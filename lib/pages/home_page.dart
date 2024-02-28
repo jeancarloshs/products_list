@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:products_list/helpers/store/products_store.dart';
 import 'package:products_list/http/http_client.dart';
+import 'package:products_list/model/products_model.dart';
 import 'package:products_list/repositories/products_repositories.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
               child: Text(
                 productsStore.error.value,
                 style: const TextStyle(
-                  color: Colors.red,
+                  color: Colors.redAccent,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
@@ -81,8 +82,8 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(16),
               itemCount: productsStore.state.value.length,
               itemBuilder: (_, index) {
-                final item = productsStore.state.value[index];
-                Column(
+                final ProductsModel item = productsStore.state.value[index];
+                return Column(
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(16),
@@ -99,6 +100,14 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
                           fontSize: 24,
+                        ),
+                      ),
+                      subtitle: Text(
+                        item.description,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16
                         ),
                       ),
                     )

@@ -21,7 +21,7 @@ class ProductsStore {
   Future getProducts() async {
     isLoading.value = true;
     try {
-      final response = await repository.getProducts();
+      final List<ProductsModel> response = await repository.getProducts();
       state.value = response;
     } on NotFoundException catch (e) {
       error.value = e.message;
